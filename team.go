@@ -123,9 +123,7 @@ func getTeamFromResponse(c *Client, resp *http.Response, err error) (*Team, erro
 
 // Member is a team member.
 type Member struct {
-	APIObject struct {
-		APIObject
-	} `json:"user"`
+	APIObject `json:"user"`
 	Role string `json:"role"`
 }
 
