@@ -89,11 +89,19 @@ func (c *Client) AddUserToTeam(teamID, userID string) error {
 	return err
 }
 
-// AddUserToTeam adds a user with custom role to a team.
-func (c *Client) AddUserRoleToTeam(teamID, userID string, role string) error {
-	v := make(map[string]string)
-	v["role"] = role
-	_, err := c.put("/teams/"+teamID+"/users/"+userID, v, nil)
+// AddTeamMember adds a team member, optionally with a custom role overriding the default role.
+func (c *Client) AddTeamMember(teamID string, member *Member) error {
+	payload := make(map[string]string)
+	if member.Role != ""{
+		payload["role"] = member.Role
+	}
+	_, err := c.put("/teams/"+teamID+"/users/"+member.APIObject.ID, payload, nil)
+	return err
+}
+
+// RemoveTeamMember removes a user from a team.
+func (c *Client) RemoveTeamMember(teamID, userID string) error {
+	_, err := c.delete("/teams/" + teamID + "/users/" + userID)
 	return err
 }
 
