@@ -77,12 +77,6 @@ func (c *Client) AddEscalationPolicyToTeam(teamID, epID string) error {
 	return err
 }
 
-// RemoveUserFromTeam removes a user from a team.
-func (c *Client) RemoveUserFromTeam(teamID, userID string) error {
-	_, err := c.delete("/teams/" + teamID + "/users/" + userID)
-	return err
-}
-
 // AddUserToTeam adds a user to a team.
 func (c *Client) AddUserToTeam(teamID, userID string) error {
 	_, err := c.put("/teams/"+teamID+"/users/"+userID, nil, nil)
