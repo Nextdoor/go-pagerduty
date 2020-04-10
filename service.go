@@ -17,6 +17,11 @@ type Integration struct {
 	Type             string     `json:"type,omitempty"`
 	IntegrationKey   string     `json:"integration_key,omitempty"`
 	IntegrationEmail string     `json:"integration_email,omitempty"`
+	Config           IntegrationConfig `json:"config,omitempty"`
+}
+
+type IntegrationConfig struct {
+	Fields map[string]interface{} `json:"fields,omitempty"`
 }
 
 // InlineModel represents when a scheduled action will occur.
