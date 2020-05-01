@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net"
 	"net/http"
 	"runtime"
@@ -166,14 +167,15 @@ func (c *Client) delete(path string) (*http.Response, error) {
 }
 
 func (c *Client) put(path string, payload interface{}, headers *map[string]string) (*http.Response, error) {
-
 	if payload != nil {
 		data, err := json.Marshal(payload)
+		log.Printf("PUT data %+v", data)
 		if err != nil {
 			return nil, err
 		}
 		return c.do("PUT", path, bytes.NewBuffer(data), headers)
 	}
+	log.Printf("nil payload %+v", payload)
 	return c.do("PUT", path, nil, headers)
 }
 
