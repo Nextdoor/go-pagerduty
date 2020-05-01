@@ -168,8 +168,8 @@ func (c *Client) delete(path string) (*http.Response, error) {
 
 func (c *Client) put(path string, payload interface{}, headers *map[string]string) (*http.Response, error) {
 	if payload != nil {
+		log.Printf("PUT payload %+v", payload)
 		data, err := json.Marshal(payload)
-		log.Printf("PUT data %+v", data)
 		if err != nil {
 			return nil, err
 		}
