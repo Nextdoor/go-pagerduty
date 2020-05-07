@@ -137,7 +137,7 @@ func (c *Client) CreateService(s Service) (*Service, error) {
 
 // UpdateService updates an existing service.
 func (c *Client) UpdateService(s Service) (*Service, error) {
-	resp, err := c.put("/services/"+s.ID, s, nil)
+	resp, err := c.put("/v1/services/"+s.ID, s, nil)
 	return getServiceFromResponse(c, resp, err)
 }
 

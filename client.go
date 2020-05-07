@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	apiEndpoint = "https://api.pagerduty.com/v1"
+	apiEndpoint = "https://api.pagerduty.com"
 )
 
 // The type of authentication to use with the API client
@@ -193,6 +193,7 @@ func (c *Client) get(path string) (*http.Response, error) {
 
 func (c *Client) do(method, path string, body io.Reader, headers *map[string]string) (*http.Response, error) {
 	endpoint := c.apiEndpoint + path
+	log.Printf("PagerDuty DO endpoint %s", endpoint)
 	req, _ := http.NewRequest(method, endpoint, body)
 	req.Header.Set("Accept", "application/vnd.pagerduty+json;version=2")
 	if headers != nil {
