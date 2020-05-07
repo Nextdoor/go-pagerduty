@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	apiEndpoint = "https://api.pagerduty.com"
+	apiEndpoint = "https://api.pagerduty.com/v1"
 )
 
 // The type of authentication to use with the API client
