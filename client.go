@@ -170,6 +170,7 @@ func (c *Client) put(path string, payload interface{}, headers *map[string]strin
 	if payload != nil {
 		log.Printf("PUT payload %+v", payload)
 		data, err := json.Marshal(payload)
+		log.Printf("marshalled JSON %s", string(data))
 		if err != nil {
 			return nil, err
 		}
