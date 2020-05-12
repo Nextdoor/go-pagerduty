@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net"
 	"net/http"
 	"runtime"
@@ -169,6 +170,7 @@ func (c *Client) put(path string, payload interface{}, headers *map[string]strin
 
 	if payload != nil {
 		data, err := json.Marshal(payload)
+		log.Printf("marshalled JSON %s", string(data))
 		if err != nil {
 			return nil, err
 		}
