@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/kr/pretty"
 	"io"
 	"log"
 	"net"
@@ -167,8 +168,9 @@ func (c *Client) delete(path string) (*http.Response, error) {
 }
 
 func (c *Client) put(path string, payload interface{}, headers *map[string]string) (*http.Response, error) {
-
 	if payload != nil {
+		log.Println("printing payload before marshalling")
+		pretty.Println(payload)
 		data, err := json.Marshal(payload)
 		log.Printf("marshalled JSON %s", string(data))
 		if err != nil {

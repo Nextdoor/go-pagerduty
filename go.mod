@@ -4,6 +4,7 @@ go 1.12
 
 require (
 	github.com/google/go-querystring v1.0.0
+	github.com/kr/pretty v0.2.0
 	github.com/mitchellh/cli v1.0.0
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/sirupsen/logrus v1.4.2

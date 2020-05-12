@@ -2,6 +2,8 @@ package pagerduty
 
 import (
 	"fmt"
+	"github.com/kr/pretty"
+	"log"
 	"net/http"
 
 	"github.com/google/go-querystring/query"
@@ -142,6 +144,8 @@ func (c *Client) UpdateService(s Service) (*Service, error) {
 	}{
 		s,
 	}
+	log.Println("printing body in UpdateService")
+	pretty.Println(body)
 	resp, err := c.put("/services/"+s.ID, body, nil)
 	return getServiceFromResponse(c, resp, err)
 }
