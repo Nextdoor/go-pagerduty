@@ -81,7 +81,7 @@ type Service struct {
 	Teams                  []Team               `json:"teams,omitempty"`
 	IncidentUrgencyRule    *IncidentUrgencyRule `json:"incident_urgency_rule,omitempty"`
 	SupportHours           *SupportHours        `json:"support_hours,omitempty"`
-	ScheduledActions       []ScheduledAction    `json:"scheduled_actions,omitempty"`
+	ScheduledActions       *[]ScheduledAction    `json:"scheduled_actions,omitempty"`
 	AlertCreation          string               `json:"alert_creation,omitempty"`
 	AlertGrouping          string               `json:"alert_grouping,omitempty"`
 	AlertGroupingTimeout   *uint                `json:"alert_grouping_timeout,omitempty"`
@@ -145,6 +145,8 @@ func (c *Client) UpdateService(s Service) (*Service, error) {
 		s,
 	}
 	log.Println("printing body in UpdateService")
+	fmt.Printf("%+v", body)
+	fmt.Printf("%+v", body)
 	pretty.Println(body)
 	resp, err := c.put("/services/"+s.ID, body, nil)
 	return getServiceFromResponse(c, resp, err)
