@@ -2,6 +2,7 @@ package pagerduty
 
 import (
 	"fmt"
+	"github.com/google/go-querystring/query"
 	"net/http"
 )
 
@@ -27,18 +28,23 @@ func (c *Client) CreateRuleset(r Ruleset) (*Ruleset, error) {
 	return getRulesetFromResponse(c, resp)
 }
 
-// GetRuleset shows detailed information about a schedule, including entries for each layer and sub-schedule.
-//func (c *Client) GetRuleset(id string, o GetRulesetOptions) (*Ruleset, error) {
-//	v, err := query.Values(o)
-//	if err != nil {
-//		return nil, fmt.Errorf("Could not parse values for query: %v", err)
-//	}
-//	resp, err := c.get("/rulesets/" + id + "?" + v.Encode())
-//	if err != nil {
-//		return nil, err
-//	}
-//	return getRulesetFromResponse(c, resp)
-//}
+// GetRulesetOptions is the data structure used when calling the GetRuleset API endpoint.
+type GetRulesetOptions struct {
+	Includes []string `url:"include,omitempty,brackets"`
+}
+
+// GetRuleset shows detailed information about a ruleset.
+func (c *Client) GetRuleset(id string, o GetRulesetOptions) (*Ruleset, error) {
+	v, err := query.Values(o)
+	if err != nil {
+		return nil, fmt.Errorf("Could not parse values for query: %v", err)
+	}
+	resp, err := c.get("/rulesets/" + id + "?" + v.Encode())
+	if err != nil {
+		return nil, err
+	}
+	return getRulesetFromResponse(c, resp)
+}
 
 // UpdateRuleset updates an existing ruleset.
 func (c *Client) UpdateRuleset(id string, r Ruleset) (*Ruleset, error) {
