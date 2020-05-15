@@ -27,7 +27,7 @@ func (c *Client) CreateRuleset(r Ruleset) (*Ruleset, error) {
 	return getRulesetFromResponse(c, resp)
 }
 
-// GetRuleset shows detailed information about a ruleset.
+// GetRuleset shows information about the given ruleset.
 func (c *Client) GetRuleset(id string) (*Ruleset, error) {
 	resp, err := c.get("/rulesets/" + id)
 	if err != nil {
@@ -47,7 +47,7 @@ func (c *Client) UpdateRuleset(id string, r Ruleset) (*Ruleset, error) {
 	return getRulesetFromResponse(c, resp)
 }
 
-// DeleteRuleset removes an override.
+// DeleteRuleset removes the ruleset.
 func (c *Client) DeleteRuleset(id string) error {
 	_, err := c.delete("/rulesets/" + id)
 	return err
