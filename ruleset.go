@@ -9,11 +9,11 @@ type Ruleset struct {
 	APIObject
 	Name string `json:"name,omitempty"`
 	RoutingKeys []string `json:"routing_keys,omitempty"`
-	Team APIObject `json:"team,omitempty"`
+	Team *APIObject `json:"team,omitempty"`
 	CreatedAt string `json:"created_at,omitempty"`
 	UpdatedAt string `json:"updated_at,omitempty"`
-	Creator APIObject `json:"creator,omitempty"`
-	Updater APIObject `json:"updater,omitempty"`
+	Creator *APIObject `json:"creator,omitempty"`
+	Updater *APIObject `json:"updater,omitempty"`
 }
 
 // CreateRuleset creates a new ruleset.
