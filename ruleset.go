@@ -68,12 +68,12 @@ func getRulesetFromResponse(c *Client, resp *http.Response) (*Ruleset, error) {
 
 type EventRule struct {
 	APIObject
-	Position int `json:"position,omitempty"`
-	Disabled bool `json:"disabled,omitempty"`
-	CatchAll bool `json:"catch_all,omitempty"`
-	Conditions `json:"conditions,omitempty"`
-	TimeFrame `json:"time_frame,omitempty"`
-	Actions []Action `json:"actions,omitempty"`
+	Position *int `json:"position,omitempty"`
+	Disabled *bool `json:"disabled,omitempty"`
+	CatchAll *bool `json:"catch_all,omitempty"`
+	*Conditions `json:"conditions,omitempty"`
+	*TimeFrame `json:"time_frame,omitempty"`
+	Actions `json:"actions,omitempty"`
 }
 
 type Conditions struct {
@@ -109,7 +109,7 @@ type ScheduledWeekly struct {
 	Weekdays []int `json:"weekdays,omitempty"`
 }
 
-type Action struct {
+type Actions struct {
 	Annotate Value `json:"annotate,omitempty"`
 	EventAction Value `json:"event_action,omitempty"`
 	Extractions []Extraction `json:"extractions,omitempty"`
